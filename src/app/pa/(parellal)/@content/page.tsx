@@ -1,8 +1,7 @@
 
 
 
-export default function RootPage() {
-
+export default function ContentPage() {
     return (
         <div>
 

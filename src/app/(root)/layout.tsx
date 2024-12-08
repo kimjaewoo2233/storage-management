@@ -1,23 +1,27 @@
-import {ReactNode} from "react";
-import {redirect} from "next/navigation";
+import MobileNavigation from "@/components/mobile-navigation";
+import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
+import {ReactNode} from "react";
 
+interface Props {
+    children: ReactNode;
+}
 
-export const dynamic = "force-dynamic";
-
-export default async function Layout({ children }: { children: ReactNode}){
-    // const currentUser = await getCurrentUser();
-    //
-    // if(!currentUser) return redirect("/sign-in");
+export default function RootLayout({ children }: ReactNode){
 
     return (
-        <main className="flex h-screen">
+        <section className="flex h-screen">
             <Sidebar/>
             <section className="flex h-full flex-1 flex-col">
-                <div className="remove-scrollbar h-full flex-1 overflow-auto bg-light-400 px-5 py-7  sm:mr-7 sm:rounded-[30px] md:mb-7 md:px-9 md:py-10 !important">
-                    {children}
+                <MobileNavigation/>
+                <Header/>
+                <div
+                    className="remove-scrollbar h-full flex-1 overflow-auto bg-light-400  sm:rounded-[30px] sm:px-5 sm:py-5 !important">
+                  <section className="w-full h-full bg-gray-400 rounded-2xl">
+                      {children}
+                  </section>
                 </div>
             </section>
-        </main>
+        </section>
     )
 }
